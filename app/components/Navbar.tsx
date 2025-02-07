@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ title }) => {
   };
 
   return (
-    <nav className="bg-white py-2 px-4 shadow-md">
+    <nav className="bg-white py-2 px-4 shadow-md relative"> {/* Added relative positioning */}
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-xl md:text-2xl font-bold text-blue-600">
@@ -38,10 +38,12 @@ const Navbar: React.FC<NavbarProps> = ({ title }) => {
         {/* Navigation Links (Hidden on Mobile by Default) */}
         <div
           className={`md:flex items-center space-x-2 md:space-x-6 text-black ${
-            isOpen ? "flex flex-col absolute top-full left-0 w-full bg-white p-4 z-10" : "hidden"
+            isOpen
+              ? "flex flex-col absolute top-full left-0 w-full bg-white p-4 z-20"  // Adjusted z-index
+              : "hidden"
           } md:relative`}
         >
-          <ul className="md:flex space-x-2 md:space-x-6 text-black">
+          <ul className="md:flex flex-col md:flex-row space-y-2 md:space-y-0 space-x-2 md:space-x-6 text-black"> {/* Modified ul for mobile */}
             {["Home", "Projects", "Services", "Blog", "About", "Contacts"].map(
               (item, index) => (
                 <li key={index} className="relative group text-sm">
@@ -60,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ title }) => {
           </ul>
 
           {/* Auth Buttons (Hidden on Mobile by Default) */}
-          <div className="md:flex items-center space-x-2 md:space-x-4 mt-4 md:mt-0">
+          <div className="md:flex flex-col md:flex-row items-center space-y-2 md:space-y-0 space-x-2 md:space-x-4 mt-4 md:mt-0"> {/* Modified auth button div for mobile */}
             <Link href="/signin" className="text-gray-700 hover:underline text-sm">
               Sign In
             </Link>
